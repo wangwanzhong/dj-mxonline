@@ -1,0 +1,6 @@
+# Django
+settings_sensitive.py
+.idea/*
+*.pyc
+pro_static
+db.sqlite3
