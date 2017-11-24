@@ -1,10 +1,19 @@
-from django.contrib import admin
+import xadmin
 
-from .models import UserProfile
-
-
-class UserProfileAdmin(admin.ModelAdmin):
-    pass
+from .models import EmailVerifyRecord, Banner
 
 
-admin.site.register(UserProfile, UserProfileAdmin)
+class EmailVerifyRecordAdmin:
+    list_display = ('email', 'code', 'send_type', 'send_time')
+    search_fields = ('email', 'code', 'send_type')
+    list_filter = ('email', 'send_type', 'send_time')
+
+
+class BannerAdmin:
+    list_display = ('title', 'image', 'url', 'index', 'add_time')
+    search_fields = ('title', 'image', 'url', 'index', 'add_time')
+    list_filter = ('title', 'image', 'url', 'index', 'add_time')
+
+
+xadmin.site.register(EmailVerifyRecord, EmailVerifyRecordAdmin)
+xadmin.site.register(Banner, BannerAdmin)
