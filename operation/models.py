@@ -20,8 +20,8 @@ class UserAsk(models.Model):
 
 class CourseComments(models.Model):
     """课程评论"""
-    user = models.ForeignKey(UserProfile, '用户')
-    course = models.ForeignKey(Course, '课程')
+    user = models.ForeignKey(UserProfile, verbose_name='用户')
+    course = models.ForeignKey(Course, verbose_name='课程')
     comments = models.CharField(max_length=200, verbose_name='评论')
     add_time = models.DateTimeField('添加时间', default=datetime.now)
 
@@ -31,7 +31,7 @@ class CourseComments(models.Model):
 
 
 class UserFavorite(models.Model):
-    user = models.ForeignKey(UserProfile, '用户')
+    user = models.ForeignKey(UserProfile, verbose_name='用户')
     fav_id = models.IntegerField('数据id', default=0)
     fav_type = models.IntegerField('收藏类型', default=0, choices=((1, '课程'), (2, '课程机构'), (3, '讲师'),))
     add_time = models.DateTimeField('收藏时间', default=datetime.now)
@@ -53,8 +53,8 @@ class UserMessage(models.Model):
 
 
 class UserCourse(models.Model):
-    user = models.ForeignKey(UserProfile, '用户')
-    course = models.ForeignKey(Course, '课程')
+    user = models.ForeignKey(UserProfile, verbose_name='用户')
+    course = models.ForeignKey(Course, verbose_name='课程')
     add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
