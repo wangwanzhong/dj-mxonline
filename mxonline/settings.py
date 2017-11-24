@@ -16,6 +16,7 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'organization.apps.OrganizationConfig',
     'operation.apps.OperationConfig',
+    'xadmin',
+    'crispy_forms',
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
