@@ -134,3 +134,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# 自定义配置
+# 参考：freight/settings_sensitive_sample.py
+if os.path.exists('settings_sensitive.py'):
+    from settings_sensitive import *
