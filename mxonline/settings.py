@@ -133,10 +133,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'autostaticfiles')
 
 
-# 自定义配置
-# 参考：freight/settings_sensitive_sample.py
-if os.path.exists('settings_sensitive.py'):
-    from settings_sensitive import *
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,3 +1,12 @@
 # Python 3
 django==1.11.7
 pillow==4.3.0
+mysqlclient==1.3.12
+
+# xadmin
+# 根据本项目定制兼容 py3 dj1.11 版本下载地址：https://github.com/sshwsfc/xadmin
+#git clone https://github.com/sshwsfc/xadmin.git
+#cd xadmin
+#python.exe setup.py install
+#pip uninstall xadmin
+#cp -a xadmin/xadmin extra_apps
