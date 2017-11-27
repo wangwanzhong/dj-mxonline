@@ -49,6 +49,9 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,3 +144,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'autostaticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# 高优先级配置
+# 参考：freight/settings_sensitive_sample.py
+if os.path.exists('mxonline/settings_sensitive.py'):
+    from mxonline.settings_sensitive import *
