@@ -18,7 +18,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -29,7 +28,6 @@ SECRET_KEY = 'ex6(!mp2iik4il!d_s$^*#x7o^!0w74hu2@k==gyh6=8h-=@vz'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -46,8 +44,40 @@ INSTALLED_APPS = [
     'operation.apps.OperationConfig',
     'xadmin',
     'crispy_forms',
+    'captcha',
 ]
 
+
+# Captcha
+# See http://django-simple-captcha.readthedocs.io/en/latest/usage.html
+# 格式
+CAPTCHA_OUTPUT_FORMAT = u'%(text_field)s %(hidden_field)s %(image)s'
+# 噪点样式
+CAPTCHA_NOISE_FUNCTIONS = (
+    # 'captcha.helpers.noise_null',       # 没有样式
+    # 'captcha.helpers.noise_arcs',     # 线
+    'captcha.helpers.noise_dots',  # 点
+)
+# 图片大小
+CAPTCHA_IMAGE_SIZE = (100, 30)
+# 字符个数
+CAPTCHA_LENGTH = 4
+# 超时(minutes)
+CAPTCHA_TIMEOUT = 1
+# 文字倾斜
+CAPTCHA_LETTER_ROTATION = (-10, 10)
+# 背景颜色
+CAPTCHA_BACKGROUND_COLOR = '#FFFFFF'
+# 文字颜色
+CAPTCHA_FOREGROUND_COLOR = '#0A12E5'
+# 验证码类型
+# 图片中的文字为随机英文字母，如 mdsh
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'
+# 图片中的文字为数字表达式，如 1+2=
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+
+
+# Extend User Model
 AUTH_USER_MODEL = 'users.UserProfile'
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
@@ -83,7 +113,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mxonline.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -97,7 +126,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -117,7 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -131,7 +158,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -141,12 +167,18 @@ STATICFILES_DIRS = (
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'autostaticfiles')
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Email
+EMAIL_HOST = "smtp.xxx.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "xxx@xxx.com"
+EMAIL_HOST_PASSWORD = "xxx"
+EMAIL_USE_TLS= False
+EMAIL_FROM = "Same as EMAIL_HOST_USER"
 
 # 高优先级配置
-# 参考：freight/settings_sensitive_sample.py
-if os.path.exists('mxonline/settings_sensitive.py'):
-    from mxonline.settings_sensitive import *
+# 参考：settings_sensitive_sample.py
+if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings_sensitive.py')):
+    from .settings_sensitive import *
