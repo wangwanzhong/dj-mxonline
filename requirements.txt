@@ -3,6 +3,7 @@ django==1.11.7
 pillow==4.3.0
 mysqlclient==1.3.12
 django-simple-captcha
+django-pure-pagination
 
 # xadmin
 # 根据本项目定制兼容 py3 dj1.11 版本下载地址：https://github.com/sshwsfc/xadmin
