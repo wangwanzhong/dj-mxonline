@@ -19,6 +19,7 @@ import xadmin
 
 # from users.views import user_login
 from users.views import LoginView, RegisterView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from courses.views import OrgView
 
 
 urlpatterns = [
@@ -32,4 +33,7 @@ urlpatterns = [
     url(r'^forget/$', ForgetPwdView.as_view(), name="forget_pwd"),
     url(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name="reset_pwd"),
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
+
+    # 课程机构首页
+    url(r'^org_list/$', OrgView.as_view(), name='org_list'),
 ]
