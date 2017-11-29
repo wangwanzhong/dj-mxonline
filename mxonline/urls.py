@@ -35,6 +35,6 @@ urlpatterns = [
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
 
     # 课程机构首页
-    url(r'^org/', include('organization.urls', namespace='org')),
+    url(r'^org/', include('organization.urls')),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
 ]
