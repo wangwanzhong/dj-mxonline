@@ -24,6 +24,8 @@ class CourseOrg(models.Model):
     image = models.ImageField('封面', upload_to='org/%Y%m', max_length=100)
     address = models.CharField(max_length=150, verbose_name='机构地址')
     city = models.ForeignKey(CityDict, verbose_name='城市')
+    students = models.IntegerField('学生数', default=0)
+    courses = models.IntegerField('课程数', default=0)
     add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
