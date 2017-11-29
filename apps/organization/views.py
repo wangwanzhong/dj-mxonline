@@ -1,7 +1,10 @@
+import json
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from .models import CityDict, CourseOrg
+from .forms import UserAskForm
 
 
 class OrgView(View):
@@ -50,3 +53,19 @@ class OrgView(View):
             'sort': sort
         }
         return render(request, 'org-list.html', context)
+
+
+class AddUserAskView(View):
+    """User add feedback"""
+
+    def post(self, request):
+        user_ask_form = UserAskForm(request.POST)
+
+        if user_ask_form.is_valid():
+            user_ask_form.save(commit=True)
+            res_content = {"status": "success"}
+        else:
+            # error_list = [v for k, v in user_ask_form.errors.items()]
+            res_content = {"status": "fail", "msg": user_ask_form.errors}
+
+        return HttpResponse(json.dumps(res_content), content_type='application/json')

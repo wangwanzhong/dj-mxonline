@@ -19,9 +19,7 @@ from django.views.static import serve
 from django.conf import settings
 import xadmin
 
-# from users.views import user_login
 from users.views import LoginView, RegisterView, AciveUserView, ForgetPwdView, ResetView, ModifyPwdView
-from organization.views import OrgView
 
 
 urlpatterns = [
@@ -37,6 +35,6 @@ urlpatterns = [
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
 
     # 课程机构首页
-    url(r'^org_list/$', OrgView.as_view(), name='org_list'),
+    url(r'^org/', include('organization.urls', namespace='org')),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
 ]
