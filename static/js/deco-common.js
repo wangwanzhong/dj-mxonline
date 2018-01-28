@@ -529,7 +529,7 @@ $(function() {
     //登录
     $('#jsLoginBtn').on('click',function(){
         login_form_submit();
-    })
+    });
     //登录表单键盘事件
     $("#jsLoginForm").keydown(function(event){
         if(event.keyCode == 13) {
